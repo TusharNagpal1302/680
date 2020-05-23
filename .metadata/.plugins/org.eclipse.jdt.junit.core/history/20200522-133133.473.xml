@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="DirectoryTest" project="Hw7" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="edu.umb.cs680.hw07.DirectoryTest" time="0.068" displayname="DirectoryTest" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw07.DirectoryTest]">
+    <testcase name="verifyDirectoryEqualityHome" classname="edu.umb.cs680.hw07.DirectoryTest" time="0.044" displayname="verifyDirectoryEqualityHome()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw07.DirectoryTest]/[method:verifyDirectoryEqualityHome()]"/>
+    <testcase name="verifyDirectoryEqualityRoot" classname="edu.umb.cs680.hw07.DirectoryTest" time="0.024" displayname="verifyDirectoryEqualityRoot()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw07.DirectoryTest]/[method:verifyDirectoryEqualityRoot()]"/>
+  </testsuite>
+</testrun>

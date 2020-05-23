@@ -1,0 +1,146 @@
+package edu.umb.cs680.hw09;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+class ApfsDirectoryTest {
+
+static LocalDateTime localdateTime = LocalDateTime.of(2020, 5, 5, 0, 0);
+	
+	@SuppressWarnings("unused")
+	@BeforeAll
+	public static void initialize() {
+		
+		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
+		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.initFileSystem("drive", 2000);
+		ApfsDirectory system = new ApfsDirectory(root, "system", 0, localdateTime, "Tushar Nagpal", localdateTime);
+		ApfsDirectory home = new ApfsDirectory(root, "home", 0, localdateTime, "Tushar Nagpal", localdateTime);
+		ApfsDirectory pictures = new ApfsDirectory(home, "pictures", 0, localdateTime, "Tushar Nagpal", localdateTime);
+		ApfsFile a = new ApfsFile(system, "a", 100, localdateTime, "Tushar Nagpal", localdateTime);
+		ApfsFile b = new ApfsFile(system, "b", 150, localdateTime, "Tushar Nagpal", localdateTime);
+		ApfsFile c = new ApfsFile(system, "c", 200, localdateTime, "Tushar Nagpal", localdateTime);
+		ApfsFile d = new ApfsFile(home, "d", 50, localdateTime, "Tushar Nagpal", localdateTime);
+		ApfsFile e = new ApfsFile(pictures, "e", 100, localdateTime, "Tushar Nagpal", localdateTime);
+		ApfsFile f = new ApfsFile(pictures, "f", 200, localdateTime, "Tushar Nagpal", localdateTime);
+		ApfsLink x = new ApfsLink(home, "x", 0, localdateTime, "Tushar Nagpal", localdateTime, system);
+		ApfsLink y = new ApfsLink(pictures, "y", 0, localdateTime, "Tushar Nagpal", localdateTime, e);
+	}
+	
+	private String[] dirToStringArray(ApfsDirectory dir) {
+		Optional<ApfsDirectory> optionalDirectory = Optional.ofNullable(dir.getParent());
+		String[] dirInfo = { Boolean.toString(dir.isDirectory()), dir.getName(), 
+				Integer.toString(dir.getSize()), dir.getCreationTime().toString(), 
+				optionalDirectory.isPresent()?dir.getParent().getName():null, 
+						Integer.toString(dir.getTotalSize()),
+						Integer.toString(dir.countChildren()), dir.getOwnerName(),dir.getLastModified().toString()};
+		return dirInfo;
+	}
+
+	@Test
+	void checkIfDirectory() {
+		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
+		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.getRootDir();
+		assertTrue(root.findDirByName("root").isDirectory());
+		assertTrue(root.findDirByName("home").isDirectory());
+		assertTrue(root.findDirByName("system").isDirectory());
+		assertTrue(root.findDirByName("pictures").isDirectory());
+		assertFalse(root.findFileByName("a").isDirectory());
+		assertFalse(root.findFileByName("b").isDirectory());
+		assertFalse(root.findFileByName("c").isDirectory());
+		assertFalse(root.findFileByName("d").isDirectory());
+		assertFalse(root.findFileByName("e").isDirectory());
+		assertFalse(root.findFileByName("f").isDirectory());
+	}
+	
+	@Test
+	void checkfetchedDirAndFile() {
+		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
+		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.getRootDir();
+		assertSame("home", root.findDirByName("home").getName());
+		assertSame("root", root.findDirByName("root").getName());
+		assertSame("system", root.findDirByName("system").getName());
+		assertSame("pictures", root.findDirByName("pictures").getName());
+		assertSame("a", root.findFileByName("a").getName());
+		assertSame("f", root.findFileByName("f").getName());
+	}
+	
+	@Test
+	void checkDirectorySize() {
+		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
+		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.getRootDir();
+		assertEquals(800, root.findDirByName("root").getTotalSize());
+		assertEquals(350, root.findDirByName("home").getTotalSize());
+		assertEquals(450, root.findDirByName("system").getTotalSize());
+		assertEquals(300, root.findDirByName("pictures").getTotalSize());
+	}
+	
+	@Test
+	void checkFilesInDirectory() {
+		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
+		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.getRootDir();
+		assertSame("d", root.findDirByName("home").getFiles().get(0).getName());
+		assertSame("a", root.findDirByName("system").getFiles().get(0).getName());
+		assertSame("b", root.findDirByName("system").getFiles().get(1).getName());
+		assertSame("c", root.findDirByName("system").getFiles().get(2).getName());
+	}
+	
+	@Test
+	void checkSubDirectories() {
+		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
+		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.getRootDir();
+		assertSame("system", root.findDirByName("root").getSubDirectories().get(0).getName());
+		assertSame("home", root.findDirByName("root").getSubDirectories().get(1).getName());
+	}
+	
+	@Test
+	void checkChildrenCount() {
+		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
+		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.getRootDir();
+		assertEquals(2, root.findDirByName("root").countChildren());
+		assertEquals(3, root.findDirByName("system").countChildren());
+		assertEquals(2, root.findDirByName("home").countChildren());
+		assertEquals(2, root.findDirByName("pictures").countChildren());
+	}
+	
+	@Test
+	public void verifyDirectoryEqualityRoot() {
+		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
+		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.getRootDir();
+		String[] expected = { "true", "root", "0", localdateTime.toString(), null, "800", "2", "Tushar Nagpal", localdateTime.toString() };
+		ApfsDirectory actual = root.findDirByName("root");
+		assertArrayEquals(expected,dirToStringArray(actual));
+	}
+	
+	@Test
+	public void verifyDirectoryEqualityHome() { 
+		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
+		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.getRootDir();
+		String[] expected = { "true", "home", "0", localdateTime.toString(), "root", "350", "2", "Tushar Nagpal", localdateTime.toString() };
+		ApfsDirectory actual = root.findDirByName("home");
+		assertArrayEquals(expected,dirToStringArray(actual));
+	}
+	
+	@Test
+	public void verifyDirectoryEqualitySystem() { 
+		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
+		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.getRootDir();
+		String[] expected = { "true", "system", "0", localdateTime.toString(), "root", "450", "3", "Tushar Nagpal", localdateTime.toString() };
+		ApfsDirectory actual = root.findDirByName("system");
+		assertArrayEquals(expected,dirToStringArray(actual));
+	}
+	
+	@Test
+	public void verifyDirectoryEqualityPictures() { 
+		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
+		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.getRootDir();
+		String[] expected = { "true", "pictures", "0", localdateTime.toString(), "home", "300", "2", "Tushar Nagpal", localdateTime.toString() };
+		ApfsDirectory actual = root.findDirByName("pictures");
+		assertArrayEquals(expected,dirToStringArray(actual));
+	}
+
+}

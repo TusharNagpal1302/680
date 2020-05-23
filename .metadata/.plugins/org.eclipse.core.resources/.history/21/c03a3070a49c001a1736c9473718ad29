@@ -1,0 +1,117 @@
+package src.edu.umb.cs680.hw10;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+
+import org.junit.jupiter.api.BeforeAll;
+
+
+import java.util.Arrays;
+import java.util.LinkedList;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class VisitorTest{
+
+    private static APFS apfs;
+    private static ApfsDirectory root, applications, home, code;
+    private static ApfsFile games,music, photos, mail, contacts, address;
+    private static ApfsLink x, y;
+
+    @BeforeAll
+    public static void setUp() {
+        apfs = new APFS("Tushar Nagpal");
+        apfs.initFileSystem("Local Disk", 1000);
+        root = apfs.getRootDir();
+
+        applications = new ApfsDirectory(root, "applications");
+        home = new ApfsDirectory(root, "home");
+        root.appendChild(applications);
+        root.appendChild((home));
+
+        games = new ApfsFile(applications, "toys", 10);
+        music = new ApfsFile(applications, "keyboard", 10);
+        applications.appendChild(games);
+        applications.appendChild(music);
+
+        photos = new ApfsFile(home, "pictures", 10);
+        mail = new ApfsFile(home, "pdf", 10);
+        code = new ApfsDirectory(home, "data");
+        home.appendChild(photos);
+        home.appendChild(mail);
+        home.appendChild(code);
+
+        contacts = new ApfsFile(code, "names", 10);
+        address = new ApfsFile(code, "emails", 10);
+        code.appendChild(contacts);
+        code.appendChild(address);
+
+        x = new ApfsLink(home, "x", applications);
+        y = new ApfsLink(code, "y", keyboard);
+        home.appendChild(x);
+        code.appendChild(y);
+    }
+
+    @Test
+    public void testCountingOfRoot() {
+        int[] expected = {4, 6, 2};
+
+        ApfsCountingVisitor v = new ApfsCountingVisitor();
+        root.accept(v);
+        int[] actual = {v.getDirNum(), v.getFileNum(), v.getLinkNum()};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testCountingOfHome() {
+        int[] expected = {2, 4, 2};
+
+        ApfsCountingVisitor v = new ApfsCountingVisitor();
+        home.accept(v);
+        int[] actual = {v.getDirNum(), v.getFileNum(), v.getLinkNum()};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testFileCrawlingOfRoot() {
+        LinkedList<ApfsFile> expected = new LinkedList<>(Arrays.asList(toys,keyboard, pictures, pdf, names, emails));
+
+        ApfsFileCrawlingVisitor v = new ApfsFileCrawlingVisitor();
+        root.accept(v);
+        LinkedList<ApfsFile> actual = v.getFiles();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testFileCrawlingOfApplications() {
+        LinkedList<ApfsFile> expected = new LinkedList<>(Arrays.asList(toys,keyboard));
+
+        ApfsFileCrawlingVisitor v = new ApfsFileCrawlingVisitor();
+        applications.accept(v);
+        LinkedList<ApfsFile> actual = v.getFiles();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSearchGamesInRoot() {
+        LinkedList<ApfsFile> expected = new LinkedList<>(Arrays.asList(toys));
+
+        ApfsFileSearchVisitor v = new ApfsFileSearchVisitor("toys");
+        root.accept(v);
+        LinkedList<ApfsFile> actual = v.getFoundFiles();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSearchMusicInHome() {
+        LinkedList<ApfsFile> expected = new LinkedList<>();
+
+        ApfsFileSearchVisitor v = new ApfsFileSearchVisitor("keyboard");
+        home.accept(v);
+        LinkedList<ApfsFile> actual = v.getFoundFiles();
+        assertEquals(expected, actual);
+    }
+}

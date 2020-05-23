@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CarTest (1)" project="Hw14" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="edu.umb.cs680.hw14.CarTest" time="0.062" displayname="CarTest" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw14.CarTest]">
+    <testcase name="sortUsingMileageComparatorReversed" classname="edu.umb.cs680.hw14.CarTest" time="0.037" displayname="sortUsingMileageComparatorReversed()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw14.CarTest]/[method:sortUsingMileageComparatorReversed()]"/>
+    <testcase name="sortUsingPriceComparator" classname="edu.umb.cs680.hw14.CarTest" time="0.005" displayname="sortUsingPriceComparator()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw14.CarTest]/[method:sortUsingPriceComparator()]"/>
+    <testcase name="sortUsingMileageComparator" classname="edu.umb.cs680.hw14.CarTest" time="0.003" displayname="sortUsingMileageComparator()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw14.CarTest]/[method:sortUsingMileageComparator()]"/>
+    <testcase name="sortUsingYearComparator" classname="edu.umb.cs680.hw14.CarTest" time="0.003" displayname="sortUsingYearComparator()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw14.CarTest]/[method:sortUsingYearComparator()]"/>
+    <testcase name="sortUsingComparator" classname="edu.umb.cs680.hw14.CarTest" time="0.014" displayname="sortUsingComparator()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw14.CarTest]/[method:sortUsingComparator()]"/>
+  </testsuite>
+</testrun>

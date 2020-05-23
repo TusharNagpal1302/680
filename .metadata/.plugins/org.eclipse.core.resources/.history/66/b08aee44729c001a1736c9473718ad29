@@ -1,0 +1,30 @@
+package edu.umb.cs680.hw10;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+class PriceComparatorTest {
+
+ArrayList<Car> usedCars= new ArrayList<Car>();
+	
+	private void befor() {
+		usedCars.add(new Car("Toyota", "RAV4", 2018, 15, 50000));
+		usedCars.add(new Car("Honda", "City", 2018, 45, 150000));
+		usedCars.add(new Car("Hundai", "Corola", 2018, 30, 100000));
+		usedCars.add(new Car("Audi", "R8", 2018, 10, 1500000));
+		usedCars.add(new Car("Bmw", "CDI", 2018, 5, 250000));
+	}
+	
+	@Test
+	void verifyMileageComparator() {
+		befor();
+		ArrayList<Car> beforeCars = (ArrayList<Car>) usedCars.clone();
+		Collections.sort(usedCars, new PriceComparator());
+		assertNotEquals(beforeCars.get(3).getModel(), usedCars.get(3).getModel());
+	}
+
+}

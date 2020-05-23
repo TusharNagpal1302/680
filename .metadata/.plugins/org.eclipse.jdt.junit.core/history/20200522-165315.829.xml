@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ApfsLinkTest" project="Hw9" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="edu.umb.cs680.hw08.ApfsLinkTest" time="0.051" displayname="ApfsLinkTest" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.ApfsLinkTest]">
+    <testcase name="verifyTargetEqualityE" classname="edu.umb.cs680.hw08.ApfsLinkTest" time="0.034" displayname="verifyTargetEqualityE()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.ApfsLinkTest]/[method:verifyTargetEqualityE()]"/>
+    <testcase name="verifyTargetEqualityHome" classname="edu.umb.cs680.hw08.ApfsLinkTest" time="0.017" displayname="verifyTargetEqualityHome()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.ApfsLinkTest]/[method:verifyTargetEqualityHome()]"/>
+  </testsuite>
+</testrun>

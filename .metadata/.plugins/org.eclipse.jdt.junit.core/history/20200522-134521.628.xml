@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="FileSystemTest" project="Hw7" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="edu.umb.cs680.hw07.FileSystemTest" time="0.064" displayname="FileSystemTest" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw07.FileSystemTest]">
+    <testcase name="verifyRootDirectory" classname="edu.umb.cs680.hw07.FileSystemTest" time="0.046" displayname="verifyRootDirectory()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw07.FileSystemTest]/[method:verifyRootDirectory()]"/>
+    <testcase name="verifyDirectorRootForPicture" classname="edu.umb.cs680.hw07.FileSystemTest" time="0.005" displayname="verifyDirectorRootForPicture()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw07.FileSystemTest]/[method:verifyDirectorRootForPicture()]"/>
+    <testcase name="verifyTotalSize" classname="edu.umb.cs680.hw07.FileSystemTest" time="0.013" displayname="verifyTotalSize()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw07.FileSystemTest]/[method:verifyTotalSize()]"/>
+  </testsuite>
+</testrun>

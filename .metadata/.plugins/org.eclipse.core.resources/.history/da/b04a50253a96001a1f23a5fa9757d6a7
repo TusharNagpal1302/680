@@ -1,0 +1,14 @@
+package edu.umb.cs680.hw02;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class PrimeGeneratorTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

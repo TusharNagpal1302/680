@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TimeStampComparatorTest" project="Hw12" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="edu.umb.cs680.hw12.TimeStampComparatorTest" time="0.041" displayname="TimeStampComparatorTest" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw12.TimeStampComparatorTest]">
+    <testcase name="verifyLinkEqualitySystem" classname="edu.umb.cs680.hw12.TimeStampComparatorTest" time="0.041" displayname="verifyLinkEqualitySystem()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw12.TimeStampComparatorTest]/[method:verifyLinkEqualitySystem()]"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="FileSystemTest (1)" project="Hw9" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="edu.umb.cs680.hw08.FileSystemTest" time="0.0" displayname="FileSystemTest" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.FileSystemTest]">
+    <testcase name="verifyOwner" classname="edu.umb.cs680.hw08.FileSystemTest" time="0.0" displayname="verifyOwner()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.FileSystemTest]/[method:verifyOwner()]"/>
+    <testcase name="verifyInitialization" classname="edu.umb.cs680.hw08.FileSystemTest" time="0.0" displayname="verifyInitialization()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.FileSystemTest]/[method:verifyInitialization()]"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,73 @@
+package edu.umb.cs680.hw07;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+
+class FileSystemTest {
+
+	FileSystem fs;
+
+	private void befor() {
+		fs = FileSystem.getFileSystem();
+
+		Directory root = new Directory(null, "Root", 0, LocalDateTime.of(2019, 2, 2, 12, 0));
+
+		Directory home = new Directory(root, "Home", 0, LocalDateTime.of(2019, 2, 2, 12, 0));
+		root.appendChild(home);
+
+		Directory system = new Directory(root, "System", 0, LocalDateTime.of(2019, 2, 2, 12, 0));
+		root.appendChild(system);
+
+		Directory picture = new Directory(home, "Picture", 0, LocalDateTime.of(2019, 2, 2, 12, 0));
+		home.appendChild(picture);
+
+		File a = new File(system, "a.txt", 100, LocalDateTime.of(2019, 2, 2, 12, 0));
+
+		File b = new File(system, "b.txt", 200, LocalDateTime.of(2019, 2, 2, 12, 0));
+
+		File c = new File(system, "c.txt", 100, LocalDateTime.of(2019, 2, 2, 12, 0));
+		system.appendChild(a);
+		system.appendChild(b);
+		system.appendChild(c);
+		
+		File d = new File(home, "d.txt", 400, LocalDateTime.of(2019, 2, 2, 12, 0));
+		home.appendChild(d);
+
+		Link x = new Link(home, "x", 0, LocalDateTime.of(2019, 2, 2, 12, 0), system);
+		home.appendChild(x);
+		
+		File e = new File(picture, "e.txt", 500, LocalDateTime.of(2019, 2, 2, 12, 0));
+
+		File f = new File(picture, "f.txt", 100, LocalDateTime.of(2019, 2, 2, 12, 0));
+
+		Link y = new Link(picture, "y", 0, LocalDateTime.of(2019, 2, 2, 12, 0), e);
+		
+		picture.appendChild(y);
+		picture.appendChild(e);
+		picture.appendChild(f);
+		fs.addRootDir(root);
+
+	}
+	
+	@Test
+	void verifyRootDirectory() {
+		befor();
+		assertEquals(fs.getRoot().getName(), "Root");
+	}
+	
+	@Test
+	void verifyTotalSize() {
+		befor();
+		assertEquals(fs.getRoot().getTotalSize(), 1800);
+	}
+	
+	@Test
+	void verifyDirectorRootForPicture() {
+		befor();
+		assertNotNull(fs.getRootDirs((Directory)((Directory)fs.getRoot().getSubDirectories().get(0)).getSubDirectories().get(0)));
+	}
+
+}

@@ -1,0 +1,44 @@
+package edu.umb.cs680.hw07;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+
+class FileTest {
+
+	private String[] fileToStringArray(File c) {
+		return new String[]{""+c.isDirectory() ,c.getName(), ""+c.getSize(), ""+c.getCreationTime(),
+				c.getParent()!= null ? c.getParent().getName() : "null"};
+	}
+	
+	@Test
+	public void verifyFileEqualityUnderRoot() {
+		String[] expected = {"false", "a.txt", "10", ""+LocalDateTime.of(2019, 2, 2, 12, 0), "Root"};
+		
+		Directory root = new Directory(null, "Root", 0,
+				LocalDateTime.of(2019, 2, 2, 12, 0));
+		
+		
+		File actual = new File(root, "a.txt", 10,
+				LocalDateTime.of(2019, 2, 2, 12, 0));
+		assertArrayEquals(expected,
+				fileToStringArray(actual));
+	}
+	
+	@Test
+	public void verifyDirectoryEqualityUnderHome() {
+		String[] expected = {"false", "b.txt", "100", ""+LocalDateTime.of(2019, 2, 2, 12, 0), "Home"};
+
+		
+		Directory root = new Directory(null, "Root", 0, LocalDateTime.of(2019, 2, 2, 12, 0));
+		
+		Directory home = new Directory(root, "Home", 0, LocalDateTime.of(2019, 2, 2, 12, 0));
+		
+		File actual = new File(home, "b.txt", 100, LocalDateTime.of(2019, 2, 2, 12, 0));
+
+		assertArrayEquals(expected, fileToStringArray(actual));
+	}
+
+}

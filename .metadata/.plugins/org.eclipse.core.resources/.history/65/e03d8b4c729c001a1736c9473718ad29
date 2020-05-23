@@ -1,0 +1,33 @@
+package src.edu.umb.cs680.hw10;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import edu.umb.cs680.hw10.Car;
+import edu.umb.cs680.hw10.PriceComparator;
+import edu.umb.cs680.hw10.YearComparator;
+
+public class YearComparatorTest {
+ArrayList<Car> usedCars= new ArrayList<Car>();
+	
+	private void befor() {
+		usedCars.add(new Car("Toyota", "RAV4", 2015, 15, 50000));
+		usedCars.add(new Car("Honda", "City", 2014, 45, 150000));
+		usedCars.add(new Car("Hundai", "Corola", 2013, 30, 100000));
+		usedCars.add(new Car("Audi", "R8", 2018, 10, 1500000));
+		usedCars.add(new Car("Bmw", "CDI", 2017, 5, 250000));
+	}
+	
+	@Test
+	void verifyMileageComparator() {
+		befor();
+		ArrayList<Car> beforeCars = (ArrayList<Car>) usedCars.clone();
+		Collections.sort(usedCars, new YearComparator());
+		assertNotEquals(beforeCars.get(0).getYear(), usedCars.get(0).getYear());
+	}
+}

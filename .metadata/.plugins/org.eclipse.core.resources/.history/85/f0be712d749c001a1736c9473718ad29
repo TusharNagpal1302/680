@@ -1,0 +1,86 @@
+package edu.umb.cs680.hw14;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+class CarTest {
+
+private List<Car> list = new ArrayList<>();
+	
+	void before() {
+		list.add(new Car("Hundai", "Rxp", 2017, 5000, 20));
+		list.add(new Car("Bmw", "Xls", 2015, 250, 12));
+		list.add(new Car("audi", "cdi",2000, 1400, 15));
+		list.add(new Car("Abc", "xyz", 2017, 5300, 10));
+	}
+	
+	@Test
+	public void sortUsingPriceComparator() {
+		before();
+		Car a  = list.get(0);
+		Comparator<Car> groupByComparator = Comparator.comparing(Car::getPrice);
+		Collections.sort(list, groupByComparator);
+		
+			
+		assertNotEquals(a.getModel(), list.get(0).getModel());
+	}
+	
+
+	@Test
+	public void sortUsingYearComparator() {
+		before();
+		Car a  = list.get(0);
+		Comparator<Car> groupByComparator = Comparator.comparing(Car::getYear);
+		Collections.sort(list, groupByComparator);
+		
+			
+		assertNotEquals(a.getModel(), list.get(0).getModel());
+	}
+	
+	@Test
+	public void sortUsingMileageComparator() {
+		before();
+		Car a  = list.get(0);
+		Comparator<Car> groupByComparator = Comparator.comparing(Car::getMileage);
+		Collections.sort(list, groupByComparator);
+		
+			
+		assertNotEquals(a.getModel(), list.get(0).getModel());
+	}
+	
+	@Test
+	public void sortUsingMileageComparatorReversed() {
+		before();
+		Car a  = list.get(1);
+		Comparator<Car> groupByComparator = Comparator.comparing(Car::getMileage, Comparator.reverseOrder());
+		Collections.sort(list, groupByComparator);
+		
+			
+		assertNotEquals(a.getModel(), list.get(1).getModel());
+	}
+	
+	@Test
+	public void sortUsingComparator() {
+		before();
+		Car a  = list.get(0);
+		Comparator<Car> groupByComparator = Comparator.comparing(Car::getDominationCount);
+		
+		int count =5;
+		
+		for(Car c: list) {
+			c.setDominationCount(count--); 
+		}
+		
+		Collections.sort(list, groupByComparator);
+		
+			
+		assertNotEquals(a.getModel(), list.get(0).getModel());
+	}
+
+}

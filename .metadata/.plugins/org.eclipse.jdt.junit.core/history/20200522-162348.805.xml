@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ApfsFileTest" project="Hw9" tests="7" started="7" failures="0" errors="0" ignored="0">
+  <testsuite name="edu.umb.cs680.hw08.ApfsFileTest" time="0.212" displayname="ApfsFileTest" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.ApfsFileTest]">
+    <testcase name="verifyFileEqualityA" classname="edu.umb.cs680.hw08.ApfsFileTest" time="0.122" displayname="verifyFileEqualityA()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.ApfsFileTest]/[method:verifyFileEqualityA()]"/>
+    <testcase name="verifyFileEqualityB" classname="edu.umb.cs680.hw08.ApfsFileTest" time="0.009" displayname="verifyFileEqualityB()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.ApfsFileTest]/[method:verifyFileEqualityB()]"/>
+    <testcase name="verifyFileEqualityC" classname="edu.umb.cs680.hw08.ApfsFileTest" time="0.022" displayname="verifyFileEqualityC()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.ApfsFileTest]/[method:verifyFileEqualityC()]"/>
+    <testcase name="verifyFileEqualityD" classname="edu.umb.cs680.hw08.ApfsFileTest" time="0.008" displayname="verifyFileEqualityD()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.ApfsFileTest]/[method:verifyFileEqualityD()]"/>
+    <testcase name="verifyFileEqualityE" classname="edu.umb.cs680.hw08.ApfsFileTest" time="0.007" displayname="verifyFileEqualityE()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.ApfsFileTest]/[method:verifyFileEqualityE()]"/>
+    <testcase name="verifyFileEqualityF" classname="edu.umb.cs680.hw08.ApfsFileTest" time="0.006" displayname="verifyFileEqualityF()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.ApfsFileTest]/[method:verifyFileEqualityF()]"/>
+    <testcase name="checkIfDirectory" classname="edu.umb.cs680.hw08.ApfsFileTest" time="0.038" displayname="checkIfDirectory()" uniqueid="[engine:junit-jupiter]/[class:edu.umb.cs680.hw08.ApfsFileTest]/[method:checkIfDirectory()]"/>
+  </testsuite>
+</testrun>

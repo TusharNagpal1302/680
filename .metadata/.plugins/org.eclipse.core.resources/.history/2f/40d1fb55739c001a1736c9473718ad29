@@ -1,0 +1,86 @@
+package edu.umb.cs680.hw15;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+class CarTest {
+
+private List<Car> l = new ArrayList<>();
+	
+	void before() {
+		l.add(new Car("Hundai", "Rxp", 2017, 5000, 20));
+		l.add(new Car("Bmw", "Xls", 2015, 250, 12));
+		l.add(new Car("audi", "cdi",2000, 1400, 15));
+		l.add(new Car("Abc", "xyz", 2017, 5300, 10));
+	}
+	
+	@Test
+	public void sortUsingPriceComparator() {
+		before();
+		Car a  = l.get(0);
+		Comparator<Car> groupByComparator = Comparator.comparing(Car::getPrice);
+		Collections.sort(l, groupByComparator);
+		
+			
+		assertNotEquals(a.getModel(), l.get(0).getModel());
+	}
+	
+
+	@Test
+	public void sortUsingYearComparator() {
+		before();
+		Car a  = l.get(0);
+		Comparator<Car> groupByComparator = Comparator.comparing(Car::getYear);
+		Collections.sort(l, groupByComparator);
+		
+			
+		assertNotEquals(a.getModel(), l.get(0).getModel());
+	}
+	
+	@Test
+	public void sortUsingMileageComparator() {
+		before();
+		Car a  = l.get(0);
+		Comparator<Car> groupByComparator = Comparator.comparing(Car::getMileage);
+		Collections.sort(l, groupByComparator);
+		
+			
+		assertNotEquals(a.getModel(), l.get(0).getModel());
+	}
+	
+	@Test
+	public void sortUsingMileageComparatorReversed() {
+		before();
+		Car a  = l.get(1);
+		Comparator<Car> groupByComparator = Comparator.comparing(Car::getMileage, Comparator.reverseOrder());
+		Collections.sort(l, groupByComparator);
+		
+			
+		assertNotEquals(a.getModel(), l.get(1).getModel());
+	}
+	
+	@Test
+	public void sortUsingComparator() {
+		before();
+		Car a  = l.get(0);
+		Comparator<Car> groupByComparator = Comparator.comparing(Car::getDominationCount);
+		
+		int count =5;
+		
+		for(Car c: l) {
+			c.setDominationCount(count--); // because all cars are sorted so index indicate dominant count
+		}
+		
+		Collections.sort(l, groupByComparator);
+		
+			
+		assertNotEquals(a.getModel(), l.get(0).getModel());
+	}
+
+}

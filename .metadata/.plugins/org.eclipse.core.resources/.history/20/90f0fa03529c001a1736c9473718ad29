@@ -1,0 +1,43 @@
+package test.src.edu.umb.cs680.hw07;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+
+import edu.umb.cs680.hw07.Directory;
+
+
+
+public class DirectoryTest {
+	
+	private String[] directorytoStringArray(Directory c) {
+		return new String[]{""+c.isDirectory() ,c.getName(), ""+c.getSize(), ""+c.getCreationTime(),
+				c.getParent()!= null ? c.getParent().getName() : "null", ""+c.countChildren()};
+	}
+	
+	@Test
+	public void verifyDirectoryEqualityRoot() {
+		String[] expected = {"true", "Root", "0", ""+LocalDateTime.of(2019, 2, 2, 12, 0), "null", "0"};
+		
+		Directory actual = new Directory(null, "Root", 0,
+				LocalDateTime.of(2019, 2, 2, 12, 0));
+		
+		assertArrayEquals(expected,
+				directorytoStringArray(actual));
+	}
+	
+	@Test
+	public void verifyDirectoryEqualityHome() {
+
+		
+	Directory root = new Directory(null, "Root", 0, LocalDateTime.of(2019, 2, 2, 12, 0));
+	String[] expected = {"true", "Home", "0", ""+LocalDateTime.of(2019, 2, 2, 12, 0), "Root", "0"};
+		Directory actual = new Directory(root, "Home", 0, LocalDateTime.of(2019, 2, 2, 12, 0));
+		
+		assertArrayEquals(expected,
+				directorytoStringArray(actual));
+	}
+	
+}	

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="Homework16">
+
+	<property environment="env" />
+	<property name="junit.output.dir" value="junit" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.8" />
+	<property name="source" value="1.8" />
+
+	<property name="test.src.dir" value="${basedir}\test\src\edu\umb\cs680\hw16" />
+	<property name="test.bin.dir" value="${basedir}\test\bin" />
+	<property name="main.bin.dir" value="${basedir}\bin" />
+	<property name="main.src.dir" value="${basedir}\src\edu\umb\cs680\hw16" />
+
+
+	<path id="classpath">
+		<pathelement location="${main.bin.dir}" />
+		<pathelement location="${test.bin.dir}" />
+		<fileset dir="${env.JUNIT}" includes="*.jar" excludes="org.junit.vintage.*.jar" />
+	</path>
+
+	<target name="init">
+		<mkdir dir="${main.bin.dir}" />
+		<mkdir dir="${test.bin.dir}" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${main.bin.dir}" />
+		<delete dir="${test.bin.dir}" />
+	</target>
+
+	<target depends="clean" name="cleanall" />
+	<target depends="clean, build-project, FSElementTest, FSElement" name="build" />
+
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="${main.bin.dir}" includeantruntime="false" source="${source}" target="${target}">
+			<src path="src" />
+			<classpath refid="classpath" />
+		</javac>
+
+		<javac debug="true" debuglevel="${debuglevel}" destdir="${test.bin.dir}" includeantruntime="false" source="${source}" target="${target}">
+			<src path="${test.src.dir}" />
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<target name="FSElement">
+		<java classname="edu.umb.cs680.hw16.Apfs" classpath="bin" failonerror="true" fork="yes" />
+		<java classname="edu.umb.cs680.hw16.ApfsCountingVisitor" classpath="bin" failonerror="true" fork="yes" />
+		<java classname="edu.umb.cs680.hw16.ApfsDirectory" classpath="bin" failonerror="true" fork="yes" />
+		<java classname="edu.umb.cs680.hw16.ApfsElement" classpath="bin" failonerror="true" fork="yes" />
+		<java classname="edu.umb.cs680.hw16.ApfsFile" classpath="bin" failonerror="true" fork="yes" />
+		<java classname="edu.umb.cs680.hw16.ApfsFileCrawlingVisitor" classpath="bin" failonerror="true" fork="yes" />
+		<java classname="edu.umb.cs680.hw16.ApfsFileSearchVisitor" classpath="bin" failonerror="true" fork="yes" />
+		<java classname="edu.umb.cs680.hw16.ApfsLink" classpath="bin" failonerror="true" fork="yes" />
+		<java classname="edu.umb.cs680.hw16.FileSystem" classpath="bin" failonerror="true" fork="yes" />
+		<java classname="edu.umb.cs680.hw16.FSElement" classpath="bin" failonerror="true" fork="yes" />
+			
+	</target>
+
+	<target name="FSElementTest">
+		<junitlauncher printSummary="yes">
+			<classpath refid="classpath" />
+			<testclasses outputdir="test">
+				<fileset dir="${test.build.dir}">
+					<include name="edu/umb/cs680/hw16/*Test.class" />
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+</project>
